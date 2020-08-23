@@ -1,5 +1,7 @@
-const userName = 'Maximilian'
+const button = document.querySelector('button')
 
-let age: number
-age = 30
-console.log(userName)
+button?.addEventListener('click', () => {
+  console.log('Clicked!')
+})
+
+const map = new Map()
