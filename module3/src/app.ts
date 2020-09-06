@@ -15,7 +15,7 @@ function clickHandler (message: string) {
 }
 
 if (button) {
-  button.addEventListener('click', clickHandler.bind(this, 'Hey!'))
+  button.addEventListener('click', clickHandler.bind(null, 'Hey!'))
 }
 
 const map = new Map()
