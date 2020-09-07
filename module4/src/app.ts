@@ -1,8 +1,8 @@
-const userName = 'Luis'
+// const userName = 'Luis'
 // userName = 'Luis Bilecki'
-let age = 30
+// let age = 30
 
-age = 29
+// age = 29
 
 var result
 // function add (a: number, b: number) {
@@ -10,10 +10,10 @@ var result
 //   return result
 // }
 
-if (age > 20) {
-  let isOld = true
-  console.log(isOld)
-}
+// if (age > 20) {
+//   let isOld = true
+//   console.log(isOld)
+// }
 
 // console.log(isOld)
 
@@ -37,7 +37,7 @@ const activeHobbies = ['Hiking']
 activeHobbies.push(...hobbies)
 
 const person = {
-  name: 'Luis',
+  firstName: 'Luis',
   age: 27
 }
 
@@ -51,3 +51,11 @@ const add = (...numbers: number[]) => {
 
 const addedNumbers = add(5, 10, 2, 3.7)
 console.log(addedNumbers)
+
+const [hobby1, hobby2, ...remainingHobbies] = hobbies
+console.log(hobbies)
+console.log(hobby1)
+console.log(hobby2)
+
+const { firstName: userName, age } = person
+console.log(userName, age, person)
