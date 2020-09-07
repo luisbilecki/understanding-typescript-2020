@@ -19,14 +19,26 @@ if (age > 20) {
 
 // console.log(add(3, 4))
 
-const add = (a: number, b: number = 1) => a + b;
+const add = (a: number, b: number = 1) => a + b
 
-const printOutput: (a: number | string) => void = output => console.log(output);
+const printOutput: (a: number | string) => void = output => console.log(output)
 
-const button = document.querySelector('button');
+const button = document.querySelector('button')
 
 if (button) {
-  button.addEventListener('click', event => console.log(event));
+  button.addEventListener('click', event => console.log(event))
 }
 
-printOutput(add(5));
+printOutput(add(5))
+
+const hobbies = ['Sports', 'Cooking']
+const activeHobbies = ['Hiking']
+
+activeHobbies.push(...hobbies)
+
+const person = {
+  name: 'Luis',
+  age: 27
+}
+
+const copiedPerson = { ...person }
