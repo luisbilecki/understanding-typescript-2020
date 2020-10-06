@@ -48,6 +48,12 @@ const fetchedUserData = {
   }
 }
 
+const userInput = null;
+
+const storedData = userInput ?? 'DEFAULT';
+
+console.log(storedData);
+
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 console.log(fetchedUserData?.job?.title);
 
