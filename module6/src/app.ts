@@ -39,6 +39,19 @@ const result = add(1, 5);
 const result2 = add('Luis', ' Felipe');
 result2.split(' ');
 
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Luis',
+  job: {
+    title: 'Professor and Developer',
+    description: ''
+  }
+}
+
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log(fetchedUserData?.job?.title);
+
+
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
