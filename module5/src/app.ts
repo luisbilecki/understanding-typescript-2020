@@ -1,5 +1,6 @@
 class Department {
-  name: string
+  name: string;
+  private employees: string[]  = [];
 
   constructor (n: string) {
     this.name = n;
@@ -7,6 +8,15 @@ class Department {
 
   describe(this: Department) {
     console.log('Department: ' + this.name)
+  }
+
+  addEmployee(employee: string) {
+    this.employees.push(employee)
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length)
+    console.log(this.employees)
   }
 }
 
@@ -16,5 +26,11 @@ accounting.describe();
 
 console.log(accounting);
 
-const accountingCopy = { name: 'Luís', describe: accounting.describe };
-accountingCopy.describe();
+accounting.addEmployee('Max');
+accounting.addEmployee('Luis');
+
+// accounting.employees[2] = 'Ana';
+
+accounting.printEmployeeInformation();
+// const accountingCopy = { name: 'Luís', describe: accounting.describe };
+// accountingCopy.describe();
