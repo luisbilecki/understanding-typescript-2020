@@ -111,3 +111,12 @@ moveAnimal({
   type: 'bird',
   flyingSpeed: 10
 })
+
+// const paragraph = document.querySelector('p')
+const paragraph = document.getElementById('message-output');
+// const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+const userInputElement = document.getElementById('user-input') as HTMLInputElement;
+
+if (userInputElement) {
+  userInputElement.value = 'Hi there!'
+}
