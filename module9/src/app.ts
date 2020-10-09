@@ -54,6 +54,17 @@ function Autobind(
   return adjDescriptor;
 }
 
+interface Draggable {
+  dragStartHandler(event: DragEvent): void;
+  dragEndHandler(event: DragEvent): void;
+}
+
+interface DragTarget {
+  dragOverHandler(event: DragEvent): void;
+  dropHandler(event: DragEvent): void;
+  dragLeaveHandler(event: DragEvent): void;
+}
+
 enum ProjectStatus {
   Active,
   Finished,
@@ -156,7 +167,9 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   abstract renderContent(): void;
 }
 
-class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
+class ProjectItem
+  extends Component<HTMLUListElement, HTMLLIElement>
+  implements Draggable {
   private project: Project;
   constructor(hostId: string, project: Project) {
     super('single-project', hostId, false, project.id);
@@ -166,12 +179,25 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
     this.renderContent();
   }
 
+  @Autobind
+  dragStartHandler(event: DragEvent) {
+    console.log(event);
+  }
+
+  @Autobind
+  dragEndHandler(_: DragEvent) {
+    console.log('DragEnd');
+  }
+
   get persons() {
     const hasOnePeople = this.project.people === 1;
     return hasOnePeople ? '1 person' : `${this.project.people} persons`;
   }
 
-  configure() {}
+  configure() {
+    this.element.addEventListener('dragstart', this.dragStartHandler);
+    this.element.addEventListener('dragend', this.dragEndHandler);
+  }
 
   renderContent() {
     const { title, description } = this.project;
