@@ -1,4 +1,7 @@
 /// <reference path="base-component.ts" />
+/// <reference path="../models/drag-drop.ts" />
+/// <reference path="../models/project.ts" />
+/// <reference path="../decorators/autobind.ts" />
 
 namespace App {
   export class ProjectItem
@@ -20,9 +23,7 @@ namespace App {
     }
 
     @Autobind
-    dragEndHandler(_: DragEvent) {
-      console.log('DragEnd');
-    }
+    dragEndHandler(_: DragEvent) {}
 
     get persons() {
       const hasOnePeople = this.project.people === 1;
