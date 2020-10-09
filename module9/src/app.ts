@@ -166,12 +166,17 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
     this.renderContent();
   }
 
+  get persons() {
+    const hasOnePeople = this.project.people === 1;
+    return hasOnePeople ? '1 person' : `${this.project.people} persons`;
+  }
+
   configure() {}
 
   renderContent() {
-    const { title, description, people } = this.project;
+    const { title, description } = this.project;
     this.element.querySelector('h2')!.textContent = title;
-    this.element.querySelector('h3')!.textContent = people.toString();
+    this.element.querySelector('h3')!.textContent = this.persons + ' assigned';
     this.element.querySelector('p')!.textContent = description;
   }
 }
