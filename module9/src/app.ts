@@ -1,3 +1,42 @@
+// Validation logic
+interface Validatable {
+  value: string | number;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+}
+
+function validate(validatableInput: Validatable) {
+  const { value, required, minLength, maxLength, min, max } = validatableInput;
+
+  let isValid = true;
+
+  if (required) {
+    isValid = isValid && value.toString().trim().length !== 0;
+  }
+
+  if (minLength && typeof value === 'string') {
+    isValid = isValid && value.length >= minLength;
+  }
+
+  if (maxLength && typeof value === 'string') {
+    isValid = isValid && value.length <= maxLength;
+  }
+
+  if (min && typeof value === 'number') {
+    isValid = isValid && value >= min;
+  }
+
+  if (max && typeof value === 'number') {
+    isValid = isValid && value <= max;
+  }
+
+  return isValid;
+}
+
+// Autobind decorator
 function Autobind(
   _target: any,
   _methodName: string,
@@ -55,11 +94,26 @@ class ProjectInput {
     const enteredDescription = this.descriptionInputElement.value;
     const enteredPeople = this.peopleInputElement.value;
 
-    const isEmptyTitle = enteredTitle.trim().length === 0;
-    const isEmptyDescription = enteredDescription.trim().length === 0;
-    const isEmptyPeople = enteredPeople.trim().length === 0;
+    const titleValidatable: Validatable = {
+      value: enteredTitle,
+      required: true,
+    };
+    const descriptionValidatable: Validatable = {
+      value: enteredDescription,
+      required: true,
+      minLength: 5,
+    };
+    const peopleValidatable: Validatable = {
+      value: +enteredPeople,
+      required: true,
+      min: 1,
+      max: 5,
+    };
+    const isInvalidTitle = !validate(titleValidatable);
+    const isInvalidDescription = !validate(descriptionValidatable);
+    const isInvalidPeople = !validate(peopleValidatable);
 
-    if (isEmptyTitle || isEmptyDescription || isEmptyPeople) {
+    if (isInvalidTitle || isInvalidDescription || isInvalidPeople) {
       alert('Invalid input, please try again!');
       return;
     }
