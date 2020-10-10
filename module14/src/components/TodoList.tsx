@@ -1,4 +1,7 @@
 import React from 'react';
+
+import './TodoList.css';
+
 import { Todo } from '../todo.model';
 
 interface TodoListProps {
